@@ -30,7 +30,7 @@ enum SortType {
 function getPreparedGoods(goods: string[], params: Params): string[] {
   const { sortField, isReversed } = params;
 
-  let preparedGoods = [...goods].sort((good1, good2) => {
+  const preparedGoods = [...goods].sort((good1, good2) => {
     switch (sortField) {
       case SortType.alphabet:
         return good1.localeCompare(good2);
@@ -42,7 +42,7 @@ function getPreparedGoods(goods: string[], params: Params): string[] {
   });
 
   if (isReversed) {
-    preparedGoods = [...preparedGoods].reverse();
+    preparedGoods.reverse();
   }
 
   return preparedGoods;
@@ -105,7 +105,7 @@ export const App: React.FC = () => {
 
       <ul>
         <ul>
-          {visibleGoods.map((good: string) => (
+          {visibleGoods.map(good => (
             <li data-cy="Good" key={good}>
               {good}
             </li>
